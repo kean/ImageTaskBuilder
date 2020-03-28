@@ -35,12 +35,12 @@ let imageView: UIImageView
 
 image.display(in: imageView)
     .transition(.fadeIn(duration: 0.33))
-    .placeholder(UIImage())
+    .placeholder(UIImage.placeholder)
     .contentMode(.center, for: .placeholder)
     .load()
 ```
 
-When you call `display()` method you get access to a variety of new options specific to the image view.
+When you call `display(in:)` method you get access to a variety of new options specific to the image view.
 
 # Requirements
 
