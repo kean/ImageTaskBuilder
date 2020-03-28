@@ -25,6 +25,10 @@ public extension ImagePipeline {
     func image(with urlRequest: URLRequest) -> ImageTaskBuilder {
         return ImageTaskBuilder(request: ImageRequest(urlRequest: urlRequest), pipeline: self)
     }
+
+    func image(with request: ImageRequest) -> ImageTaskBuilder {
+        return ImageTaskBuilder(request: request, pipeline: self)
+    }
 }
 
 /// A convenience API for loading images.
