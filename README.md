@@ -6,6 +6,8 @@
 
 A fun and convenient way to use [Nuke](https://github.com/kean/Nuke) inspired by SwiftUI.
 
+> See [**API Reference**](https://kean-org.github.io/docs/image-task-builder/reference/0.5.0/index.html) for a complete list of available options.
+
 ## Usage
 
 Downloading an image and applying processors.
