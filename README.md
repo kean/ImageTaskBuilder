@@ -16,22 +16,31 @@ ImagePipeline.shared.image(with: URL(string: "https://")!)
     .blur(radius: 10)
     .priority(.high)
     .schedule(on: .global())
-    .start { result in
+    .load { result in
         print(result) // Called on a global queue instead of the default main queue
     }
     
 // Returns a discardable `ImageTask`.
 ```
 
-Downloading an image and displaying it in an image view.
+You can take the same image that you described previously and automatically display in a view.
 
 ```swift
+let image = ImagePipeline.shared.image(with: URL(string: "https://")!)
+    .fill(width: 320)
+    .blur(radius: 10)
+    .priority(.high)
+    
 let imageView: UIImageView
 
-ImagePipeline.shared.image(with: URL(string: "https://")!)
-    .fill(width: imageView.size.width)
-    .display(in: imageView)
+image.display(in: imageView)
+    .transition(.fadeIn(duration: 0.33))
+    .placeholder(UIImage())
+    .contentMode(.center, for: .placeholder)
+    .load()
 ```
+
+When you call `display()` method you get access to a variety of new options specific to the image view.
 
 # Requirements
 

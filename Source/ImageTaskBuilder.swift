@@ -83,13 +83,12 @@ public extension ImageTaskBuilder {
 
 public extension ImageTaskBuilder {
     @discardableResult
-    func start(_ progress: ImageTask.ProgressHandler? = nil, _ completion: ImageTask.Completion? = nil) -> ImageTask {
+    func load(_ progress: ImageTask.ProgressHandler? = nil, _ completion: ImageTask.Completion? = nil) -> ImageTask {
         return pipeline.loadImage(with: request, queue: queue, progress: progress, completion: completion)
     }
 
-    @discardableResult
-    func display(in view: ImageDisplayingView, options: ImageLoadingOptions = ImageLoadingOptions.shared, progress: ImageTask.ProgressHandler? = nil, _ completion: ImageTask.Completion? = nil) -> ImageTask? {
-        return Nuke.loadImage(with: request, options: options, into: view, progress: progress, completion: completion)
+    func display(in view: ImageDisplayingView) -> ImageViewExtensionsTaskBuilder {
+        return ImageViewExtensionsTaskBuilder(self, view)
     }
 }
 
