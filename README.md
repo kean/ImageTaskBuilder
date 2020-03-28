@@ -6,21 +6,6 @@
 
 A fun and convenient way to use [Nuke](https://github.com/kean/Nuke) inspired by SwiftUI.
 
-func usage() {
-    ImagePipeline.shared.image(with: URL(string: "https://")!)
-        .fill(width: 320)
-        .blur(radius: 10)
-        .priority(.high)
-        .schedule(on: .global())
-        .start { result in
-            print(result) // Called on a global queue
-        }
-
-    let imageView = UIImageView()
-    ImagePipeline.shared.image(with: URL(string: "https://")!)
-        .display(in: imageView)
-}
-
 ## Usage
 
 Downloading an image and applying processors.
