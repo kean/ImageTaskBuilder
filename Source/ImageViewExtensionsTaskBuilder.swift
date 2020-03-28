@@ -43,18 +43,24 @@ public extension ImageLoadingOptions {
 }
 
 public extension ImageViewExtensionsTaskBuilder {
+    /// Set a placeholder to be displayed when the image is loading.
     func placeholder(_ image: PlatformImage) -> ImageViewExtensionsTaskBuilder {
         var copy = self
         copy.options.placeholder = image
         return copy
     }
 
+    /// Set an image to be displayed when the request fails.
     func failureImage(_ image: PlatformImage) -> ImageViewExtensionsTaskBuilder {
         var copy = self
         copy.options.failureImage = image
         return copy
     }
 
+    /// Set a transition animation performed when displaying a downloaded image.
+    /// Only runs when the image was not found in memory cache.
+    ///
+    /// - parameter type: `.success` by default.
     func transition(_ transition: ImageLoadingOptions.Transition, for type: ImageLoadingOptions.ImageType = .success) -> ImageViewExtensionsTaskBuilder {
         var copy = self
         switch type {
@@ -65,12 +71,9 @@ public extension ImageViewExtensionsTaskBuilder {
         return copy
     }
 
-    func alwaysTransition() -> ImageViewExtensionsTaskBuilder {
-        var copy = self
-        copy.options.alwaysTransition = true
-        return copy
-    }
-
+    /// If true, every time you request a new image for a view, the view will be
+    /// automatically prepared for reuse: image will be set to `nil`, and animations
+    /// will be removed. `true` by default.
     func prepareForReuse(enabled: Bool = true) -> ImageViewExtensionsTaskBuilder {
         var copy = self
         copy.options.isPrepareForReuseEnabled = true
@@ -79,7 +82,8 @@ public extension ImageViewExtensionsTaskBuilder {
 
     #if os(iOS) || os(tvOS)
 
-    /// Changes content mode for the image with the given type.
+    /// Set a custom content mode to be used for each image type (placeholder, success,
+    /// failure).
     func contentMode(_ contentMode: UIView.ContentMode, for type: ImageLoadingOptions.ImageType = .success) -> ImageViewExtensionsTaskBuilder {
         var copy = self
         var contentModes = copy.options.contentModes ?? ImageLoadingOptions.ContentModes(success: view.contentMode, failure: view.contentMode, placeholder: view.contentMode)

@@ -12,7 +12,7 @@ Downloading an image and applying processors.
 
 ```swift
 ImagePipeline.shared.image(with: URL(string: "https://")!)
-    .fill(width: 320)
+    .resize(width: 320)
     .blur(radius: 10)
     .priority(.high)
     .schedule(on: .global())
@@ -27,7 +27,7 @@ You can take the same image that you described previously and automatically disp
 
 ```swift
 let image = ImagePipeline.shared.image(with: URL(string: "https://")!)
-    .fill(width: 320)
+    .resize(width: 320)
     .blur(radius: 10)
     .priority(.high)
     
