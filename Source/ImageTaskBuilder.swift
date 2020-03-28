@@ -97,11 +97,11 @@ public extension ImageTaskBuilder {
     }
 
     func fill(width: CGFloat, unit: ImageProcessor.Unit = .points, crop: Bool = false, upscale: Bool = false) -> ImageTaskBuilder {
-        return process(ImageProcessor.Resize(size: CGSize(width: width, height: .greatestFiniteMagnitude), unit: unit, contentMode: .aspectFit, crop: crop, upscale: upscale))
+        return process(ImageProcessor.Resize(size: CGSize(width: width, height: 4096), unit: unit, contentMode: .aspectFit, crop: crop, upscale: upscale))
     }
 
     func fill(height: CGFloat, unit: ImageProcessor.Unit = .points, crop: Bool = false, upscale: Bool = false) -> ImageTaskBuilder {
-        return process(ImageProcessor.Resize(size: CGSize(width: .greatestFiniteMagnitude, height: height), unit: unit, contentMode: .aspectFit, crop: crop, upscale: upscale))
+        return process(ImageProcessor.Resize(size: CGSize(width: 4096, height: height), unit: unit, contentMode: .aspectFit, crop: crop, upscale: upscale))
     }
 
     #if os(iOS) || os(tvOS) || os(watchOS)
