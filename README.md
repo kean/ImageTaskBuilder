@@ -17,9 +17,8 @@ ImagePipeline.shared.image(with: URL(string: "https://")!)
     .resize(width: 320)
     .blur(radius: 10)
     .priority(.high)
-    .schedule(on: .global())
     .load { result in
-        print(result) // Called on a global queue instead of the default main queue
+        print(result)
     }
     
 // Returns a discardable `ImageTask`.
