@@ -105,8 +105,8 @@ public extension ImageTaskBuilder {
     /// - parameter contentMode: `.aspectFill` by default.
     /// - parameter crop: If `true` will crop the image to match the target size. `false` by default.
     /// - parameter upscale: `false` by default.
-    func resize(size: CGSize, unit: ImageProcessor.Unit = .points, contentMode: ImageProcessor.Resize.ContentMode = .aspectFill, crop: Bool = false, upscale: Bool = false) -> ImageTaskBuilder {
-        return process(ImageProcessor.Resize(size: size, unit: unit, contentMode: contentMode, crop: crop, upscale: upscale))
+    func resize(size: CGSize, unit: ImageProcessingOptions.Unit = .points, contentMode: ImageProcessors.Resize.ContentMode = .aspectFill, crop: Bool = false, upscale: Bool = false) -> ImageTaskBuilder {
+        return process(ImageProcessors.Resize(size: size, unit: unit, contentMode: contentMode, crop: crop, upscale: upscale))
     }
 
     /// Resizes the image to the given width maintaining aspect ratio.
@@ -116,8 +116,8 @@ public extension ImageTaskBuilder {
     /// - parameter contentMode: `.aspectFill` by default.
     /// - parameter crop: If `true` will crop the image to match the target size. `false` by default.
     /// - parameter upscale: `false` by default.
-    func resize(width: CGFloat, unit: ImageProcessor.Unit = .points, crop: Bool = false, upscale: Bool = false) -> ImageTaskBuilder {
-        return process(ImageProcessor.Resize(size: CGSize(width: width, height: 4096), unit: unit, contentMode: .aspectFit, crop: crop, upscale: upscale))
+    func resize(width: CGFloat, unit: ImageProcessingOptions.Unit = .points, crop: Bool = false, upscale: Bool = false) -> ImageTaskBuilder {
+        return process(ImageProcessors.Resize(size: CGSize(width: width, height: 4096), unit: unit, contentMode: .aspectFit, crop: crop, upscale: upscale))
     }
 
     /// Resizes the image to the given height maintaining aspect ratio.
@@ -127,15 +127,15 @@ public extension ImageTaskBuilder {
     /// - parameter contentMode: `.aspectFill` by default.
     /// - parameter crop: If `true` will crop the image to match the target size. `false` by default.
     /// - parameter upscale: `false` by default.
-    func resize(height: CGFloat, unit: ImageProcessor.Unit = .points, crop: Bool = false, upscale: Bool = false) -> ImageTaskBuilder {
-        return process(ImageProcessor.Resize(size: CGSize(width: 4096, height: height), unit: unit, contentMode: .aspectFit, crop: crop, upscale: upscale))
+    func resize(height: CGFloat, unit: ImageProcessingOptions.Unit = .points, crop: Bool = false, upscale: Bool = false) -> ImageTaskBuilder {
+        return process(ImageProcessors.Resize(size: CGSize(width: 4096, height: height), unit: unit, contentMode: .aspectFit, crop: crop, upscale: upscale))
     }
 
     #if os(iOS) || os(tvOS) || os(watchOS)
 
     /// Rounds the corners of an image into a circle.
-    func circle(border: ImageProcessor.Border? = nil) -> ImageTaskBuilder {
-        return process(ImageProcessor.Circle(border: border))
+    func circle(border: ImageProcessingOptions.Border? = nil) -> ImageTaskBuilder {
+        return process(ImageProcessors.Circle(border: border))
     }
 
     /// Rounds the corners of an image to the specified radius.
@@ -143,8 +143,8 @@ public extension ImageTaskBuilder {
     /// - parameter radius: The radius of the corners.
     /// - parameter unit: Unit of the radius, `.points` by default.
     /// - parameter border: An optional border drawn around the image.
-    func roundedCorners(radius: CGFloat, unit: ImageProcessor.Unit = .points, border: ImageProcessor.Border? = nil) -> ImageTaskBuilder {
-        return process(ImageProcessor.RoundedCorners(radius: radius, unit: unit, border: border))
+    func roundedCorners(radius: CGFloat, unit: ImageProcessingOptions.Unit = .points, border: ImageProcessingOptions.Border? = nil) -> ImageTaskBuilder {
+        return process(ImageProcessors.RoundedCorners(radius: radius, unit: unit, border: border))
     }
 
     #endif
@@ -153,7 +153,7 @@ public extension ImageTaskBuilder {
 
     /// Applies CoreImage filter with the given name.
     func filter(name: String, parameters: [String: Any], identifier: String) -> ImageTaskBuilder {
-        return process(ImageProcessor.CoreImageFilter(name: name, parameters: parameters, identifier: identifier))
+        return process(ImageProcessors.CoreImageFilter(name: name, parameters: parameters, identifier: identifier))
     }
 
     /// Applies Core Image filter (`CIFilter`) to the image.
@@ -161,21 +161,21 @@ public extension ImageTaskBuilder {
     /// # Performance Considerations.
     ///
     /// Prefer chaining multiple `CIFilter` objects using `Core Image` facilities
-    /// instead of using multiple instances of `ImageProcessor.CoreImageFilter`.
+    /// instead of using multiple instances of `ImageProcessors.CoreImageFilter`.
     ///
     /// # References
     ///
     /// - [Core Image Programming Guide](https://developer.apple.com/library/ios/documentation/GraphicsImaging/Conceptual/CoreImaging/ci_intro/ci_intro.html)
     /// - [Core Image Filter Reference](https://developer.apple.com/library/prerelease/ios/documentation/GraphicsImaging/Reference/CoreImageFilterReference/index.html)
     func filter(name: String) -> ImageTaskBuilder {
-        return process(ImageProcessor.CoreImageFilter(name: name))
+        return process(ImageProcessors.CoreImageFilter(name: name))
     }
 
     /// Blurs an image using `CIGaussianBlur` filter.
     ///
     /// - parameter radius: Blur radius, 8 by default.
     func blur(radius: Int = 8) -> ImageTaskBuilder {
-        return process(ImageProcessor.GaussianBlur(radius: radius))
+        return process(ImageProcessors.GaussianBlur(radius: radius))
     }
 
     #endif
@@ -184,6 +184,6 @@ public extension ImageTaskBuilder {
     ///
     /// - parameter id: Identifier that uniquely identifies the transformation.s
     func process(id: String, _ closure: @escaping (PlatformImage) -> PlatformImage?) -> ImageTaskBuilder {
-        return process(ImageProcessor.Anonymous(id: id, closure))
+        return process(ImageProcessors.Anonymous(id: id, closure))
     }
 }
