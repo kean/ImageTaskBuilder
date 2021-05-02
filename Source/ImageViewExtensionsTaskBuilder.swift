@@ -29,7 +29,8 @@ public struct ImageViewExtensionsTaskBuilder {
     }
 
     @discardableResult
-    public func load(progress: ImageTask.ProgressHandler? = nil, completion: ImageTask.Completion? = nil) -> ImageTask? {
+    public func load(progress: ((_ intermediateResponse: ImageResponse?, _ completedUnitCount: Int64, _ totalUnitCount: Int64) -> Void)? = nil,
+                     completion: ((_ result: Result<ImageResponse, ImagePipeline.Error>) -> Void)? = nil) -> ImageTask? {
         Nuke.loadImage(with: imageTaskBuilder.request, options: options, into: view, progress: progress, completion: completion)
     }
 }

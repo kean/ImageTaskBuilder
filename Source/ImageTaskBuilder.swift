@@ -56,6 +56,13 @@ public extension ImageTaskBuilder {
         return copy
     }
 
+    /// Sets the request cache policy.
+    func cachePolicy(_ cachePolicy: ImageRequest.CachePolicy) -> ImageTaskBuilder {
+        var copy = self
+        copy.request.cachePolicy = cachePolicy
+        return copy
+    }
+
     /// Set the advanced request options. See `ImageRequestOptions` for more info.
     func options(_ options: ImageRequestOptions) -> ImageTaskBuilder {
         var copy = self
@@ -84,7 +91,8 @@ public extension ImageTaskBuilder {
 public extension ImageTaskBuilder {
     /// Starts an image task and returns it.
     @discardableResult
-    func load(_ progress: ImageTask.ProgressHandler? = nil, _ completion: ImageTask.Completion? = nil) -> ImageTask {
+    func load(_ progress: ((_ intermediateResponse: ImageResponse?, _ completedUnitCount: Int64, _ totalUnitCount: Int64) -> Void)? = nil,
+              _ completion: ((_ result: Result<ImageResponse, ImagePipeline.Error>) -> Void)? = nil) -> ImageTask {
         return pipeline.loadImage(with: request, queue: queue, progress: progress, completion: completion)
     }
 
