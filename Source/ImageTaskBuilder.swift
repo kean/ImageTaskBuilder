@@ -45,37 +45,40 @@ public extension ImageTaskBuilder {
     /// Set the relative priority of the image task. The priority affects the order
     /// in which the image requests are executed.`.normal` by default.
     func priority(_ priority: ImageRequest.Priority) -> ImageTaskBuilder {
-        var copy = self
-        copy.request.priority = priority
-        return copy
+        map { $0.priority = priority  }
     }
 
     /// Set the advanced request options. See `ImageRequest.Options` for more info.
     func options(_ options: ImageRequest.Options) -> ImageTaskBuilder {
-        var copy = self
-        copy.request.options = options
-        return copy
+        map { $0.options = options  }
     }
 
     /// Append the given processor to the request. The processor is going to be
     /// applied after all of the previously added procesors.
     func process(_ processor: ImageProcessing) -> ImageTaskBuilder {
-        var copy = self
-        copy.request.processors.append(processor)
-        return copy
+        map { $0.processors.append(processor) }
+    }
+
+    /// Sets processors for the request.
+    func processors(_ processors: [ImageProcessing]) -> ImageTaskBuilder {
+        map { $0.processors = processors }
     }
 
     /// Sets user info for the request.
     func userInfo(_ userInfo: [ImageRequest.UserInfoKey: Any]) -> ImageTaskBuilder {
-        var copy = self
-        copy.request.userInfo = userInfo
-        return copy
+        map { $0.userInfo = userInfo }
     }
 
     /// Change the queue on which to deliver progress and completion callbacks.
     func schedule(on queue: DispatchQueue) -> ImageTaskBuilder {
         var copy = self
         copy.queue = queue
+        return copy
+    }
+
+    private func map(_ closure: (inout ImageRequest) -> Void) -> ImageTaskBuilder {
+        var copy = self
+        closure(&copy.request)
         return copy
     }
 }
