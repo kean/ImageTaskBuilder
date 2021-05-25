@@ -28,7 +28,7 @@ ImagePipeline.shared.image(with: URL(string: "https://")!)
     
 Starting with Nuke 10, instead of loading an image right away, you can also create a Combine publisher.
 
-```
+```swift
 ImagePipeline.image(with: "https://example.com/image.jpeg")
     .resize(width: 320)
     ...
