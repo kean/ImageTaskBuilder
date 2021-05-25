@@ -17,6 +17,7 @@ let package = Package(
         .package(url: "https://github.com/kean/Nuke.git", .exact("10.0.0-rc.2"))
     ],
     targets: [
-        .target(name: "ImageTaskBuilder", dependencies: ["Nuke"], path: "Source")
+        .target(name: "ImageTaskBuilder", dependencies: ["Nuke"], path: "Source"),
+        .testTarget(name: "ImageTaskBuilderTests", dependencies: ["ImageTaskBuilder"], path: "Tests")
     ]
 )

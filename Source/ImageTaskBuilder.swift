@@ -17,6 +17,8 @@ import WatchKit
 import Cocoa
 #endif
 
+public typealias ImagePipeline = Nuke.ImagePipeline
+
 public extension ImagePipeline {
     func image(with request: ImageRequestConvertible) -> ImageTaskBuilder {
         return ImageTaskBuilder(request: request, pipeline: self)
