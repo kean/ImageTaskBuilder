@@ -65,6 +65,7 @@ public extension ImageTaskBuilder {
         return copy
     }
 
+    /// Sets user info for the request.
     func userInfo(_ userInfo: [ImageRequest.UserInfoKey: Any]) -> ImageTaskBuilder {
         var copy = self
         copy.request.userInfo = userInfo
