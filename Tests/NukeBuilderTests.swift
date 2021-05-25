@@ -1,13 +1,9 @@
+// The MIT License (MIT)
 //
-//  File.swift
-//  
-//
-//  Created by Alexander Grebenyuk on 24.05.2021.
-//
+// Copyright (c) 2020-2021 Alexander Grebenyuk (github.com/kean).
 
 import Foundation
-import Nuke
-import ImageTaskBuilder
+import NukeBuilder
 import XCTest
 
 class NukeBuilderTests: XCTestCase {

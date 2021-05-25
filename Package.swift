@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "ImageTaskBuilder",
+    name: "NukeBuilder",
     platforms: [
         .macOS(.v10_15),
         .iOS(.v13),
@@ -11,13 +11,13 @@ let package = Package(
         .watchOS(.v6)
     ],
     products: [
-        .library(name: "ImageTaskBuilder", targets: ["ImageTaskBuilder"])
+        .library(name: "NukeBuilder", targets: ["NukeBuilder"])
     ],
     dependencies: [
         .package(url: "https://github.com/kean/Nuke.git", .exact("10.0.0-rc.2"))
     ],
     targets: [
-        .target(name: "ImageTaskBuilder", dependencies: ["Nuke"], path: "Source"),
-        .testTarget(name: "ImageTaskBuilderTests", dependencies: ["ImageTaskBuilder"], path: "Tests")
+        .target(name: "NukeBuilder", dependencies: ["Nuke"], path: "Source"),
+        .testTarget(name: "NukeBuilderTests", dependencies: ["NukeBuilder"], path: "Tests")
     ]
 )
