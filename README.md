@@ -2,7 +2,7 @@
 
 <p align="left"><img src="https://cloud.githubusercontent.com/assets/1567433/13918338/f8670eea-ef7f-11e5-814d-f15bdfd6b2c0.png" height="180"/>
 
-# ImageTaskBuilder
+# NukeBuilder
 
 A fun and convenient way to use [Nuke](https://github.com/kean/Nuke).
 
