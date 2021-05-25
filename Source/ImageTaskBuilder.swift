@@ -18,15 +18,7 @@ import Cocoa
 #endif
 
 public extension ImagePipeline {
-    func image(with url: URL) -> ImageTaskBuilder {
-        return ImageTaskBuilder(request: ImageRequest(url: url), pipeline: self)
-    }
-
-    func image(with urlRequest: URLRequest) -> ImageTaskBuilder {
-        return ImageTaskBuilder(request: ImageRequest(urlRequest: urlRequest), pipeline: self)
-    }
-
-    func image(with request: ImageRequest) -> ImageTaskBuilder {
+    func image(with request: ImageRequestConvertible) -> ImageTaskBuilder {
         return ImageTaskBuilder(request: request, pipeline: self)
     }
 }
@@ -39,8 +31,8 @@ public struct ImageTaskBuilder {
     private var queue: DispatchQueue?
     private let pipeline: ImagePipeline
 
-    init(request: ImageRequest, pipeline: ImagePipeline) {
-        self.request = request
+    init(request: ImageRequestConvertible, pipeline: ImagePipeline) {
+        self.request = request.asImageRequest()
         self.pipeline = pipeline
     }
 }
