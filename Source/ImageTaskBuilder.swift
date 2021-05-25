@@ -65,6 +65,12 @@ public extension ImageTaskBuilder {
         return copy
     }
 
+    func userInfo(_ userInfo: [ImageRequest.UserInfoKey: Any]) -> ImageTaskBuilder {
+        var copy = self
+        copy.request.userInfo = userInfo
+        return copy
+    }
+
     /// Change the queue on which to deliver progress and completion callbacks.
     func schedule(on queue: DispatchQueue) -> ImageTaskBuilder {
         var copy = self
