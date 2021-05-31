@@ -2,7 +2,7 @@
 
 <p align="left"><img src="https://cloud.githubusercontent.com/assets/1567433/13918338/f8670eea-ef7f-11e5-814d-f15bdfd6b2c0.png" height="180"/>
 
-# ImageTaskBuilder
+# NukeBuilder
 
 A fun and convenient way to use [Nuke](https://github.com/kean/Nuke).
 
@@ -13,6 +13,8 @@ A fun and convenient way to use [Nuke](https://github.com/kean/Nuke).
 Downloading an image and applying processors.
 
 ```swift
+import NukeBuilder
+    
 ImagePipeline.shared.image(with: URL(string: "https://")!)
     .resize(width: 320)
     .blur(radius: 10)
@@ -21,9 +23,18 @@ ImagePipeline.shared.image(with: URL(string: "https://")!)
         print(result)
     }
     
-// Returns a discardable `ImageTask`.
+// Returns a discardable `ImageTask`
 ```
+    
+Starting with Nuke 10, instead of loading an image right away, you can also create a Combine publisher.
 
+```swift
+ImagePipeline.image(with: "https://example.com/image.jpeg")
+    .resize(width: 320)
+    ...
+    .publisher
+```
+    
 You can take the same image that you described previously and automatically display in a view.
 
 ```swift
