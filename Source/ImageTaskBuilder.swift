@@ -18,6 +18,7 @@ import Cocoa
 #endif
 
 public typealias ImagePipeline = Nuke.ImagePipeline
+public typealias ImageRequest = Nuke.ImageRequest
 
 public extension ImagePipeline {
     func image(with request: ImageRequestConvertible) -> ImageTaskBuilder {

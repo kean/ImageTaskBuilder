@@ -43,12 +43,6 @@ image.display(in: imageView)
 
 When you call `display(in:)` method you get access to a variety of new options specific to the image view.
 
-# Requirements
-
-| Nuke          | Swift           | Xcode           | Platforms                                         |
-|---------------|-----------------|-----------------|---------------------------------------------------|
-| Nuke 8.0      | Swift 5.0       | Xcode 10.2      | iOS 10.0 / watchOS 3.0 / macOS 10.12 / tvOS 10.0  |
-
 # License
 
 ImageTaskBuilder is available under the MIT license. See the LICENSE file for more info.

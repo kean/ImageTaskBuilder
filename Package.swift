@@ -14,7 +14,7 @@ let package = Package(
         .library(name: "NukeBuilder", targets: ["NukeBuilder"])
     ],
     dependencies: [
-        .package(url: "https://github.com/kean/Nuke.git", .exact("10.0.0-rc.2"))
+        .package(url: "https://github.com/kean/Nuke.git", from: "10.0.0")
     ],
     targets: [
         .target(name: "NukeBuilder", dependencies: ["Nuke"], path: "Source"),
