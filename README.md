@@ -6,7 +6,7 @@
 
 A fun and convenient way to use [Nuke](https://github.com/kean/Nuke).
 
-> See [**API Reference**](https://kean-org.github.io/docs/image-task-builder/reference/0.5.0/index.html) for a complete list of available options.
+> See [**API Reference**](https://kean-org.github.io/docs/nuke-builder/reference/0.9.0/index.html) for a complete list of available options.
 
 ## Usage
 
